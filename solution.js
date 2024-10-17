@@ -1,3 +1,4 @@
+// javascript code for the assessment problem
 class StringCalculator {
     add(numbers) {
         // edge case scenrio
@@ -64,4 +65,4 @@ class StringCalculator {
   console.log(calculator.add("//;\n1;2"));   // custom delimiter = ; output will be 1+2=3
   console.log(calculator.add("//|\n3|4|5"));  // custom delimiter = |  output will be 3+4+5=12
   console.log(calculator.add("//#\n2#3#4"));  // custom delimiter = #  output will be 2+3+4=9
-  console.log(calculator.add("1,-2,3,-5"));   // negative number case output  negative numbers not allowed: -2,-5
+  console.log(calculator.add("1,-2,3,-5"));   // exception throw with message negative number case output  negative numbers not allowed: -2,-5
