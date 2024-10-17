@@ -10,6 +10,7 @@ class StringCalculator {
         let delimiter = ','  //default delimiter
         let arr = [];
         let numberToProcess = numbers;
+        let negatives = []; // Array to store any negative numbers found
         // code to find custom delimiter when the string starts with '//'
         if (numbers.substring(0, 2) === "//") {
             // Extract the custom delimiter (everything between "//" and "\n")
@@ -40,7 +41,15 @@ class StringCalculator {
         
         // Loop through the array, convert each element to a number, and add to the sum
         for (let num of arr) {
-            sum += Number(num);  // Convert string to number and add to the sum
+            if (num < 0){
+                negatives.push(num);
+            }
+            else {
+                sum += Number(num);  // Convert string to number and add to the sum
+            }
+        }
+        if (negatives.length > 0) {
+            throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
         }
         return sum;
     }
@@ -53,5 +62,6 @@ class StringCalculator {
   console.log(calculator.add('1\n2,4'));  //output will 1+2+4 = 7
   console.log(calculator.add('1\n,22,3'));  //output will 1+22+3 = 26
   console.log(calculator.add("//;\n1;2"));   // custom delimiter = ; output will be 1+2=3
-   console.log(calculator.add("//|\n3|4|5"));  // custom delimiter = |  output will be 3+4+5=12
-   console.log(calculator.add("//#\n2#3#4"));  // custom delimiter = #  output will be 2+3+4=9
+  console.log(calculator.add("//|\n3|4|5"));  // custom delimiter = |  output will be 3+4+5=12
+  console.log(calculator.add("//#\n2#3#4"));  // custom delimiter = #  output will be 2+3+4=9
+  console.log(calculator.add("1,-2,3,-5"));   // negative number case output  negative numbers not allowed: -2,-5
